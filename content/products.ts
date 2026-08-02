@@ -22,8 +22,8 @@ export type Product = {
 
 export const site = {
   brandName: "ULLYS FAVORITE",
-  tagline: "Kurasi mode sederhana, bermakna, dan penuh kepribadian.",
-  bio: "Kumpulan favorit pilihan — barang-barang yang benar-benar kupakai & kusukai. Belanja cerdas, gaya tetap maksimal.",
+  tagline: "Kurasi mode sederhana yang beneran kepakai.",
+  bio: "Halo, aku Ullis! Di sini aku cuma mau share barang-barang yang beneran aku pakai & aku suka — bukan cuma yang lagi nge-hits di TikTok. Semua yang aku pilih udah aku coba sendiri, dan kalau kamu butuh pendapat jujur soal cocok atau enggaknya, bilang aja ya.",
   socialInstagram: "https://instagram.com/ullys.favorite",
   socialTiktok: "https://tiktok.com/@ullys.favorite",
 };
@@ -35,7 +35,7 @@ export const products: Product[] = [
     name: "Atasan Putih Essentials",
     category: "Atasan",
     image: "/ullys/images/products/atasan-putih.svg",
-    description: "Atasan putih polos yang wajib ada di lemari siapa pun. Mudang dipadukan dengan apa saja — dari celana jeans hingga rok formal. Bahannya nyaman dan adem, pas untuk daily look.",
+    description: "Atasan putih ini kayak penyelamat hidup — apapun outfit-nya, dia selalu cocok. Lagi malas mikir? Pakai ini aja, udah rapi otomatis. Bahannya adem & nggak nerawang, jadi aman buat dipakai seharian.",
     price: "Rp 129.000",
     affiliateUrl: "#shopee-atasan-putih",
     featured: true,
@@ -46,7 +46,7 @@ export const products: Product[] = [
     name: "Blazer Cream Cropped",
     category: "Outerwear",
     image: "/ullys/images/products/blazer-cream.svg",
-    description: "Blazer cream yang instantly bikin penampilan lebih sopan & rapi. Potongan cropped modern, cocok untuk kerja atau hangout. Lengkapi inner putih dan celana gelap.",
+    description: "Blazer cream ini bikin penampilan naik level tanpa ribet. Buat yang kesannya 'aku serius' pas rapat, tapi tetep soft buat hangout. Potongan cropped-nya modern, dipaduin inner putih atau polos aja udah oke.",
     price: "Rp 299.000",
     affiliateUrl: "#shopee-blazer",
     featured: true,
@@ -57,7 +57,7 @@ export const products: Product[] = [
     name: "Dress Panjang Minimalis",
     category: "Dress",
     image: "/ullys/images/products/dress-panjang.svg",
-    description: "Dress cantik dengan potongan flowy yang elegan. Nyaman dipakai seharian, cocok untuk acara santai maupun semi-formal. Pilihan warna netral yang gampang dipadankan.",
+    description: "Dress panjang yang bikin kamu tetep keliatan effortless padahal mikirnya nol. Potongannya flowy & nyaman, jadi bebas gemulai seharian. Buat acara santai atau semi-formal, tinggal slip-on langsung cantik.",
     price: "Rp 249.000",
     affiliateUrl: "#shopee-dress",
     featured: true,
