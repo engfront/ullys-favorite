@@ -11,12 +11,16 @@
 @layer base {
   html { scroll-behavior: smooth; }
   body {
-    font-family: 'Inter', -apple-system, system-ui, 'Segoe UI', sans-serif;
+    font-family: 'Montserrat', -apple-system, system-ui, 'Segoe UI', sans-serif;
     background: var(--paper);
     color: var(--ink);
     -webkit-font-smoothing: antialiased;
   }
-  h1,h2,h3 { letter-spacing: -0.02em; }
+  h1,h2,h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+  .font-hero { font-family: 'Cormorant Garamond', Georgia, serif; }
 }
 
 @layer components {

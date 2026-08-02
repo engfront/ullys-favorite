@@ -39,21 +39,31 @@ function TopNav() {
 
 function Hero() {
   return (
-    <section className="relative min-h-[70vh] flex items-center overflow-hidden bg-white">
-      {/* minimal grid background */}
-      <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
-      <div className="container-x relative py-20">
-        <div className="max-w-2xl">
-          <p className="caption mb-6">{new Date().getFullYear()} — Kurasi Fashion</p>
-          <h1 className="text-5xl md:text-7xl font-bold leading-[1.05]">
-            {site.tagline.split(".")[0]}.
+    <section className="relative min-h-[85vh] flex items-end overflow-hidden">
+      {/* hero background image */}
+      <Image
+        src="/ullys/images/hero.jpg"
+        alt="ULLYS FAVORITE fashion"
+        fill
+        priority
+        className="object-cover"
+      />
+      {/* dark gradient overlay for text legibility */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
+
+      <div className="container-x relative py-16 md:pb-24">
+        <div className="max-w-2xl text-white">
+          <p className="caption text-white/60 mb-5 tracking-[0.3em]">FASHION CURATION — {new Date().getFullYear()}</p>
+          <h1 className="font-hero text-6xl md:text-8xl font-medium leading-[1.05] italic">
+            ULLYS
+            <span className="block font-normal">FAVORITE</span>
           </h1>
-          <p className="mt-6 text-lg text-black/60 leading-relaxed max-w-xl">
-            {site.bio}
+          <p className="mt-5 max-w-lg text-white/80 text-lg md:text-xl font-light leading-relaxed">
+            Kurasi sederhana, bermakna, dan penuh kepribadian — untuk gaya harianmu.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <a href="#pilihan" className="btn-dark">Jelajahi Kurasi</a>
-            <a href={site.socialInstagram} target="_blank" rel="noreferrer" className="btn-outline">Instagram</a>
+            <a href="#pilihan" className="btn-dark bg-white !text-black hover:!bg-white/90">Jelajahi Kurasi</a>
+            <a href={site.socialInstagram} className="border-2 border-white text-white px-7 py-3.5 rounded-full font-semibold hover:bg-white hover:text-black transition">Instagram</a>
           </div>
         </div>
       </div>
