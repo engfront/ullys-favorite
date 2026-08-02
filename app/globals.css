@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0d0000;   /* black pekat (duma) */
+  --paper: #ffffff; /* putih bersih */
+  --muted: #6b6b6b;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, system-ui, 'Segoe UI', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,h2,h3 { letter-spacing: -0.02em; }
+}
+
+@layer components {
+  .container-x { @apply max-w-5xl mx-auto px-5 md:px-8; }
+  .btn-dark {
+    @apply inline-flex items-center justify-center gap-2 bg-[#0d0000] text-white px-7 py-3.5 rounded-full font-semibold transition-all duration-300 hover:bg-black hover:-translate-y-0.5 hover:shadow-xl;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 border-2 border-[#0d0000] text-[#0d0000] px-7 py-3.5 rounded-full font-semibold hover:bg-[#0d0000] hover:text-white transition-all duration-300;
+  }
+  .chip { @apply px-3 py-1 rounded-full text-[11px] font-medium uppercase tracking-wider bg-black text-white; }
+  .section-title { @apply text-3xl md:text-4xl font-bold; }
+  .caption { @apply text-xs uppercase tracking-[0.2em] font-medium; }
+}
