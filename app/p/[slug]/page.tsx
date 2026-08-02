@@ -46,17 +46,17 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             <p className="text-2xl font-semibold mt-4">{product.price}</p>
 
             <div className="my-8 border-t border-black/10 pt-8">
-              <h3 className="font-semibold mb-3">Kenapa aku pilih ini 🤍</h3>
+              <h3 className="font-semibold mb-3">Kenapa kupilih ini</h3>
               <p className="text-black/70 leading-relaxed">{product.description}</p>
             </div>
 
             {/* affiliate CTA */}
             <div className="mt-auto space-y-3">
               <a href={product.affiliateUrl} target="_blank" rel="noreferrer noopener" className="btn-dark w-full text-base">
-                🛍️ Cek di Shopee
+                Cek di Shopee
               </a>
               <p className="text-center text-[11px] text-black/40">
-                Pakai link ini buat belanja — nggak bikin harganya lebih mahal, kok 😊
+                Kalau beli lewat link ini, aku dapat komisi. Harga tetap sama buat kamu.
               </p>
             </div>
           </div>

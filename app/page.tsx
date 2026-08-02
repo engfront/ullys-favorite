@@ -59,10 +59,10 @@ function Hero() {
             <span className="block font-normal">FAVORITE</span>
           </h1>
           <p className="mt-5 max-w-lg text-white/80 text-lg md:text-xl font-light leading-relaxed">
-            Barang yang beneran aku pakai, bukan cuma buat dipajang. Capek beli terus nyesel? Tenang, di sini aku pilihkan yang worth it.
+            Barang-barang yang beneran kupakai, bukan sekadar rekomendasi dari iklan. Aku pilih sendiri, aku kenakan sendiri, baru kupajang di sini.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <a href="#pilihan" className="btn-dark bg-white !text-black hover:!bg-white/90">Liat Rekomendasiku</a>
+            <a href="#pilihan" className="btn-dark bg-white !text-black hover:!bg-white/90">Lihat Pilihanku</a>
             <a href={site.socialInstagram} className="border-2 border-white text-white px-7 py-3.5 rounded-full font-semibold hover:bg-white hover:text-black transition">Follow Instagram</a>
           </div>
         </div>
@@ -77,10 +77,10 @@ function FeaturedSection() {
       <div className="container-x">
         <div className="flex items-end justify-between mb-10">
           <div>
-            <p className="caption text-white/50 mb-3">Favorit Aku</p>
-            <h2 className="section-title">Yang Paling Sering Kuterima Komplimen ✨</h2>
+            <p className="caption text-white/50 mb-3">Favoritku</p>
+            <h2 className="section-title">Yang Sering Kupakai</h2>
           </div>
-          <a href="#semua" className="text-sm text-white/70 hover:text-white transition underline underline-offset-4">Liat semua</a>
+          <a href="#semua" className="text-sm text-white/70 hover:text-white transition underline underline-offset-4">Lihat semua</a>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {featuredProducts.map((p, i) => (
@@ -126,7 +126,7 @@ function AllProducts() {
       <div className="container-x">
         <div className="mb-10">
           <p className="caption mb-3">Semua Produk</p>
-          <h2 className="section-title">Koleksi Lengkap, Nggak Pilih Kasih</h2>
+          <h2 className="section-title">Koleksi Lengkap</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
           {allProducts.map((p, i) => (
@@ -157,10 +157,10 @@ function AboutSection() {
   return (
     <section id="tentang" className="py-20 bg-black text-white">
       <div className="container-x text-center max-w-xl mx-auto">
-        <p className="caption text-white/50 mb-4">Siapa Aku</p>
-        <h2 className="section-title">Halo, Aku Ullis 👋</h2>
+        <p className="caption text-white/50 mb-4">Tentang</p>
+        <h2 className="section-title">Halo, Aku Ullis</h2>
         <p className="mt-6 text-white/70 leading-relaxed">{site.bio}</p>
-        <p className="mt-4 text-sm text-white/50">Semua link di sini bantu dukung aku bikin konten — makasih banget udah mampir! 🫶</p>
+        <p className="mt-4 text-sm text-white/50">Kalau kamu beli lewat link di sini, aku dapat komisi kecil. Nggak nambahin harga buat kamu yang beli di Shopee. Makasih, itu bantu banget buat aku lanjut bikin konten.</p>
         <div className="mt-8 flex justify-center gap-4">
           <a href={site.socialInstagram} className="btn-dark bg-white !text-black">Instagram</a>
           <a href={site.socialTiktok} className="btn-dark bg-white !text-black">TikTok</a>
@@ -175,8 +175,8 @@ function Footer() {
     <footer className="py-10 border-t border-black/10">
       <div className="container-x text-center text-sm text-black/50">
         <p className="font-semibold tracking-[0.15em] text-black">ULLYS FAVORITE</p>
-        <p className="mt-2">© {new Date().getFullYear()} · Dibuat dengan ♥ buat kamu yang lagi nyari barang bagus</p>
-        <p className="mt-1 text-xs text-black/40">Independen · Beberapa link afiliasi</p>
+        <p className="mt-2">© {new Date().getFullYear()} · ULLYS FAVORITE</p>
+        <p className="mt-1 text-xs text-black/40">Dibuat dengan usaha sendiri. Beberapa link afiliasi.</p>
       </div>
     </footer>
   );
