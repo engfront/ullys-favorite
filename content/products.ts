@@ -22,8 +22,8 @@ export type Product = {
 
 export const site = {
   brandName: "ULLYS FAVORITE",
-  tagline: "Yang kupakai, bukan yang kupajang.",
-  bio: "Aku Ullis. Di sini aku share barang yang beneran kupakai tiap hari. Kalau aku nggak suka, nggak akan ada di sini.",
+  tagline: "The pieces that made the cut.",
+  bio: "Hi, I'm Ully. Virgo energy, honest to a fault. I only recommend pieces I'd actually rebuy for myself. If it's here, it earned its spot in my closet. The hardest audition there is.",
   socialInstagram: "https://instagram.com/ullys.favorite",
   socialTiktok: "https://tiktok.com/@ullys.favorite",
 };
