@@ -59,7 +59,7 @@ function Hero() {
             <span className="block font-normal">FAVORITE</span>
           </h1>
           <p className="mt-5 max-w-lg text-white/80 text-lg md:text-xl font-light leading-relaxed">
-            Barang-barang yang beneran kupakai, bukan sekadar rekomendasi dari iklan. Aku pilih sendiri, aku kenakan sendiri, baru kupajang di sini.
+            Aku pilih sendiri, aku pakai dulu, baru kupajang di sini. Simpel.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4">
             <a href="#pilihan" className="btn-dark bg-white !text-black hover:!bg-white/90">Lihat Pilihanku</a>
