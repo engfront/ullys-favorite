@@ -167,23 +167,24 @@ function Lookbook() {
         <div className="reveal">
           <p className="eyebrow">01 — Lookbook</p>
           <h2 className="title-xl">The Full Edit</h2>
-          <p className="body-text mt-6 max-w-xl">A rotating selection of the pieces in my rotation right now. Worn on repeat, vouched for by my own wardrobe.</p>
+          <p className="body-text mt-6 max-w-xl">Pickier than most, my closet's proof. Here's what made the cut.</p>
         </div>
-        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {featuredProducts.map((p, i) => (
-            <Link key={p.slug} href={`/p/${p.slug}`} className="reveal group" style={{ transitionDelay: `${i * 0.1}s` }}>
-              <div className="aspect-[3/4] overflow-hidden relative">
+            <Link key={p.slug} href={`/p/${p.slug}`} className="reveal group" style={{ transitionDelay: `${i * 0.08}s` }}>
+              <div className="aspect-[3/4] overflow-hidden relative bg-white/5">
                 <Image src={p.image} alt={p.name} width={400} height={530} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <p className="text-cream text-sm font-semibold">{p.name}</p>
-                  <p className="text-[#C39B54] text-xs">{p.price}</p>
-                </div>
+              </div>
+              <div className="mt-3">
+                <p className="text-[11px] uppercase tracking-widest text-[#C39B54]/70">{p.category}</p>
+                <p className="font-medium mt-1 text-cream">{p.name}</p>
+                <p className="text-sm text-white/50 mt-0.5">{p.price}</p>
               </div>
             </Link>
           ))}
         </div>
         <div className="mt-12 reveal">
-          <a href="#" className="btn-line">View All Pieces →</a>
+          <a href="#picks" className="btn-line">View All Pieces →</a>
         </div>
       </div>
     </section>
@@ -194,22 +195,22 @@ function Picks() {
   return (
     <section id="picks" className="section bg-[#111114]">
       <div className="container-x w-full">
-        <div className="reveal flex flex-wrap items-end justify-between gap-6 mb-12">
-          <div>
-            <p className="eyebrow">02 — Picks</p>
-            <h2 className="title-lg">What I Keep Reaching For</h2>
-          </div>
-          <p className="body-text max-w-md">Straight from the closet. If it survived my culls, it earned its place here.</p>
+        <div className="reveal mb-12">
+          <p className="eyebrow">02 — Picks</p>
+          <h2 className="title-lg">All Pieces</h2>
+          <p className="body-text max-w-md mt-4">What I keep reach for. If it's here, it earned its spot in my closet.</p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
           {products.map((p, i) => (
             <Link key={p.slug} href={`/p/${p.slug}`} className="reveal group" style={{ transitionDelay: `${i * 0.05}s` }}>
               <div className="aspect-[3/4] overflow-hidden bg-white/5">
                 <Image src={p.image} alt={p.name} width={300} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
               </div>
-              <p className="mt-3 text-sm font-semibold text-cream group-hover:text-[#C39B54] transition-colors">{p.name}</p>
-              <p className="text-xs text-white/50">{p.category}</p>
-              <p className="text-sm text-[#C39B54] mt-1">{p.price}</p>
+              <div className="mt-3">
+                <p className="text-[10px] uppercase tracking-widest text-[#C39B54]/70">{p.category}</p>
+                <p className="font-medium text-sm mt-1 text-cream group-hover:text-[#C39B54] transition-colors">{p.name}</p>
+                <p className="text-sm text-white/50 mt-0.5">{p.price}</p>
+              </div>
             </Link>
           ))}
         </div>
