@@ -1,90 +1,216 @@
 "use client";
 
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { site, featuredProducts, allProducts, products, type Product } from "@/content/products";
+import Link from "next/link";
+import { site, products, featuredProducts } from "@/content/products";
+
+const SECTIONS = [
+  { id: "home", label: "Home" },
+  { id: "lookbook", label: "Lookbook" },
+  { id: "picks", label: "Picks" },
+  { id: "about", label: "About" },
+  { id: "contact", label: "Contact" },
+];
+
+const SLIDES = [
+  { img: "/ullys/images/hero-slide-1.jpg", kicker: "The Edit", line: "Pieces I reach for on repeat" },
+  { img: "/ullys/images/hero-slide-2.jpg", kicker: "Tailored", line: "Precision, without the stiffness" },
+  { img: "/ullys/images/hero-slide-3.jpg", kicker: "Effortless", line: "Dressed down, still put together" },
+  { img: "/ullys/images/hero-slide-4.jpg", kicker: "Foundational", line: "The base layer of a good wardrobe" },
+  { img: "/ullys/images/hero-slide-5.jpg", kicker: "The Detail", line: "Small pieces, outsize presence" },
+];
 
 export default function Home() {
+  const [active, setActive] = useState<string>(SECTIONS[0].id);
+  const [slideIdx, setSlideIdx] = useState(0);
+  const [loaded, setLoaded] = useState(false);
+
+  // loader
+  useEffect(() => {
+    const t = setTimeout(() => setLoaded(true), 1200);
+    return () => clearTimeout(t);
+  }, []);
+
+  // scroll spy
+  useEffect(() => {
+    const onScroll = () => {
+      const pos = window.scrollY + window.innerHeight / 2;
+      let cur = SECTIONS[0].id;
+      for (const s of SECTIONS) {
+        const el = document.getElementById(s.id);
+        if (el && el.offsetTop <= pos) cur = s.id;
+      }
+      setActive(cur);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // reveal on scroll
+  useEffect(() => {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+
+  // auto-advance slides
+  useEffect(() => {
+    const t = setInterval(() => setSlideIdx(i => (i + 1) % SLIDES.length), 5000);
+    return () => clearInterval(t);
+  }, []);
+
+  if (!loaded) {
+    return (
+      <div className="fixed inset-0 bg-[#0B0B0D] flex flex-col items-center justify-center">
+        <p className="font-serif text-3xl tracking-[0.3em] text-[#C39B54]">ULLYS</p>
+        <p className="mt-1 text-xs tracking-[0.5em] text-[#F8F3E7]/50 mt-2">FAVORITE</p>
+        <div className="mt-8 flex gap-1.5">
+          {[0,1,2].map(i => <span key={i} className="loader-bar w-2 h-2 bg-[#C39B54]" style={{ animationDelay: `${i*0.15}s` }} />)}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
-      <TopNav />
-      <Hero />
-      {/* featured picks */}
-      <FeaturedSection />
-      {/* category strip */}
-      <CategoryStrip />
-      {/* all products */}
-      <AllProducts />
-      <AboutSection />
-      <Footer />
+      <SideNav active={active} />
+      <Hero slideIdx={slideIdx} setSlideIdx={setSlideIdx} />
+      <Marquee />
+      <Lookbook />
+      <Picks />
+      <About />
+      <Contact />
     </>
   );
 }
 
-function TopNav() {
+function SideNav({ active }: { active: string }) {
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-black/5">
-      <div className="container-x flex items-center justify-between py-4">
-        <Link href="/" className="font-bold tracking-[0.15em] text-sm">ULLYS FAVORITE</Link>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-black/70">
-          <a href="#pilihan" className="hover:text-black transition">Picks</a>
-          <a href="#semua" className="hover:text-black transition">All</a>
-          <a href="#tentang" className="hover:text-black transition">About</a>
-        </nav>
-        <Link href={`/#semua`} className="btn-dark text-xs !py-2.5 !px-5">Shop Picks</Link>
-      </div>
-    </header>
+    <nav className="side-nav hidden md:flex flex-col">
+      {SECTIONS.map(s => (
+        <a key={s.id} href={`#${s.id}`} className={s.id === active ? "active" : ""}>
+          <span className="dot" />
+          <span className="label">{s.label}</span>
+        </a>
+      ))}
+    </nav>
   );
 }
 
-function Hero() {
+function Hero({ slideIdx, setSlideIdx }: { slideIdx: number; setSlideIdx: (n: number) => void }) {
+  const s = SLIDES[slideIdx];
   return (
-    <section className="relative min-h-[85vh] flex items-end overflow-hidden">
-      {/* hero background image */}
-      <Image
-        src="/ullys/images/hero.jpg"
-        alt="ULLYS FAVORITE fashion"
-        fill
-        priority
-        className="object-cover"
-      />
-      {/* dark gradient overlay for text legibility */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/10" />
+    <section id="home" className="relative h-screen overflow-hidden bg-[#0B0B0D]">
+      {/* slides */}
+      {SLIDES.map((sl, i) => (
+        <div key={i} className={`slide absolute inset-0 ${i === slideIdx ? "active" : ""}`}>
+          <Image src={sl.img} alt={sl.line} fill priority={i === 0} className="object-cover opacity-70" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-black/40" />
+        </div>
+      ))}
 
-      <div className="container-x relative py-16 md:pb-24">
-        <div className="max-w-2xl text-white">
-          <p className="caption text-white/60 mb-5 tracking-[0.3em]">FASHION CURATION — {new Date().getFullYear()}</p>
-          <h1 className="font-hero text-6xl md:text-8xl font-medium leading-[1.05] italic">
-            ULLYS
-            <span className="block font-normal">FAVORITE</span>
+      {/* centered title */}
+      <div className="absolute inset-0 flex items-center justify-center text-center px-6">
+        <div className="slide-title">
+          <p className="text-xs tracking-[0.35em] text-[#C39B54] uppercase">ULLYS FAVORITE</p>
+          <h1 className="font-serif text-5xl md:text-8xl font-semibold leading-none mt-4 italic">
+            {s.line}
           </h1>
-          <p className="mt-5 max-w-lg text-white/80 text-lg md:text-xl font-light leading-relaxed">
-            Pickier than most, my closet's proof. Here's what made the cut and stayed.
-          </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-4">
-            <a href="#pilihan" className="btn-dark bg-white !text-black hover:!bg-white/90">View My Picks</a>
-            <a href={site.socialInstagram} className="border-2 border-white text-white px-7 py-3.5 rounded-full font-semibold hover:bg-white hover:text-black transition">Instagram</a>
-          </div>
+          <p className="mt-6 text-sm tracking-[0.25em] uppercase text-white/70">{s.kicker}</p>
+          <a href="#picks" className="btn-gold mt-10">Explore Picks</a>
         </div>
+      </div>
+
+      {/* bottom: brand + slide dots */}
+      <div className="absolute bottom-10 left-0 right-0 flex items-center justify-between px-6 md:px-10">
+        <p className="text-xs tracking-[0.3em] text-white/60 uppercase hidden sm:block">Jakarta · Curated</p>
+        <div className="flex gap-2">
+          {SLIDES.map((_, i) => (
+            <button key={i} onClick={() => setSlideIdx(i)}
+              className={`h-1.5 rounded-full transition-all ${i === slideIdx ? "w-8 bg-[#C39B54]" : "w-1.5 bg-white/40"}`} />
+          ))}
+        </div>
+        <p className="text-xs tracking-[0.3em] text-white/60 uppercase hidden sm:block">0{slideIdx + 1}</p>
       </div>
     </section>
   );
 }
 
-function FeaturedSection() {
+function Marquee() {
+  const items = Array.from({ length: 2 });
   return (
-    <section id="pilihan" className="py-20 bg-black text-white">
-      <div className="container-x">
-        <div className="flex items-end justify-between mb-10">
-          <div>
-            <p className="caption text-white/50 mb-3">My Picks</p>
-            <h2 className="section-title">What I Keep Reach For</h2>
-          </div>
-          <a href="#semua" className="text-sm text-white/70 hover:text-white transition underline underline-offset-4">View all</a>
+    <div className="bg-[#C39B54] py-5 overflow-hidden">
+      {items.map((_, k) => (
+        <div key={k} className={`marquee ${k > 0 ? "hidden" : ""}`}>
+          {[...products, ...products].map((p, i) => (
+            <span key={i} className="text-black font-semibold tracking-[0.25em] text-sm uppercase"
+              aria-hidden={k > 0}>{p.name} · </span>
+          ))}
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+      ))}
+    </div>
+  );
+}
+
+function Lookbook() {
+  return (
+    <section id="lookbook" className="section bg-[#0B0B0D]">
+      <div className="container-x w-full">
+        <div className="reveal">
+          <p className="eyebrow">01 — Lookbook</p>
+          <h2 className="title-xl">The Full Edit</h2>
+          <p className="body-text mt-6 max-w-xl">A rotating selection of the pieces in my rotation right now. Worn on repeat, vouched for by my own wardrobe.</p>
+        </div>
+        <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4">
           {featuredProducts.map((p, i) => (
-            <FeatureCard key={p.slug} p={p} i={i} />
+            <Link key={p.slug} href={`/p/${p.slug}`} className="reveal group" style={{ transitionDelay: `${i * 0.1}s` }}>
+              <div className="aspect-[3/4] overflow-hidden relative">
+                <Image src={p.image} alt={p.name} width={400} height={530} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/80 to-transparent p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <p className="text-cream text-sm font-semibold">{p.name}</p>
+                  <p className="text-[#C39B54] text-xs">{p.price}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        <div className="mt-12 reveal">
+          <a href="#" className="btn-line">View All Pieces →</a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Picks() {
+  return (
+    <section id="picks" className="section bg-[#111114]">
+      <div className="container-x w-full">
+        <div className="reveal flex flex-wrap items-end justify-between gap-6 mb-12">
+          <div>
+            <p className="eyebrow">02 — Picks</p>
+            <h2 className="title-lg">What I Keep Reaching For</h2>
+          </div>
+          <p className="body-text max-w-md">Straight from the closet. If it survived my culls, it earned its place here.</p>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-5">
+          {products.map((p, i) => (
+            <Link key={p.slug} href={`/p/${p.slug}`} className="reveal group" style={{ transitionDelay: `${i * 0.05}s` }}>
+              <div className="aspect-[3/4] overflow-hidden bg-white/5">
+                <Image src={p.image} alt={p.name} width={300} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              </div>
+              <p className="mt-3 text-sm font-semibold text-cream group-hover:text-[#C39B54] transition-colors">{p.name}</p>
+              <p className="text-xs text-white/50">{p.category}</p>
+              <p className="text-sm text-[#C39B54] mt-1">{p.price}</p>
+            </Link>
           ))}
         </div>
       </div>
@@ -92,91 +218,58 @@ function FeaturedSection() {
   );
 }
 
-function FeatureCard({ p, i }: { p: Product; i: number }) {
+function About() {
   return (
-    <Link href={`/p/${p.slug}`} className="group fade-up" style={{ animationDelay: `${i * 0.1}s` }}>
-      <div className="aspect-[3/4] bg-white overflow-hidden rounded-lg">
-        <Image src={p.image} alt={p.name} width={300} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-      </div>
-      <div className="mt-3">
-        <p className="text-[11px] uppercase tracking-widest text-white/50">{p.category}</p>
-        <p className="font-medium mt-1">{p.name}</p>
-        <p className="text-sm text-white/70 mt-0.5">{p.price}</p>
-      </div>
-    </Link>
-  );
-}
-
-function CategoryStrip() {
-  const cats = ["Atasan", "Bawahan", "Outerwear", "Dress", "Aksesori"];
-  return (
-    <section className="py-12 border-b border-black/10">
-      <div className="container-x flex flex-wrap justify-center gap-3">
-        {cats.map(c => (
-          <a key={c} href="#semua" className="px-6 py-2.5 rounded-full border border-black/20 text-sm hover:bg-black hover:text-white transition">{c}</a>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function AllProducts() {
-  return (
-    <section id="semua" className="py-20">
-      <div className="container-x">
-        <div className="mb-10">
-          <p className="caption mb-3">All Pieces</p>
-          <h2 className="section-title">The Full Edit</h2>
+    <section id="about" className="section bg-[#0B0B0D]">
+      <div className="container-x w-full grid md:grid-cols-2 gap-12 items-center">
+        <div className="reveal">
+          <p className="eyebrow">03 — About</p>
+          <h2 className="title-xl">Hi, I'm Ully</h2>
+          <p className="body-text mt-6">{site.bio}</p>
+          <p className="body-text mt-4">Virgo energy. Honest to a fault. Everything here passed the hardest audition there is: my own closet.</p>
+          <div className="mt-10 flex gap-4">
+            <a href={site.socialInstagram} className="btn-gold">Instagram</a>
+            <a href={site.socialTiktok} className="btn-line">TikTok →</a>
+          </div>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
-          {allProducts.map((p, i) => (
-            <ProductCard key={p.slug} p={p} i={i} />
-          ))}
+        <div className="reveal relative flex justify-center" style={{ transitionDelay: "0.15s" }}>
+          {/* rotating ring */}
+          <svg className="rotating w-72 h-72 absolute" viewBox="0 0 200 200">
+            <defs>
+              <path id="ring" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0" />
+            </defs>
+            <text className="fill-[#C39B54] text-[13px] tracking-[0.3em]">
+              <textPath href="#ring">CURATED BY ULLY · WORN ON REPEAT ·</textPath>
+            </text>
+          </svg>
+          <div className="w-40 h-40 rounded-full bg-[#C39B54] flex items-center justify-center">
+            <span className="font-serif text-6xl text-black">U</span>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-function ProductCard({ p, i }: { p: Product; i: number }) {
+function Contact() {
+  const wa = `https://wa.me/6281317710063?text=${encodeURIComponent("Hi Ully! I saw your ULLYS FAVORITE picks, I want to ask about one of them.")}`;
   return (
-    <Link href={`/p/${p.slug}`} className="group fade-up" style={{ animationDelay: `${i * 0.06}s` }}>
-      <div className="aspect-[3/4] bg-black/5 overflow-hidden rounded-lg">
-        <Image src={p.image} alt={p.name} width={300} height={400} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-      </div>
-      <div className="mt-3">
-        <p className="text-[10px] uppercase tracking-widest text-black/40">{p.category}</p>
-        <p className="font-medium text-sm mt-1">{p.name}</p>
-        <p className="text-sm text-black/60 mt-0.5">{p.price}</p>
-      </div>
-    </Link>
-  );
-}
-
-function AboutSection() {
-  return (
-    <section id="tentang" className="py-20 bg-black text-white">
-      <div className="container-x text-center max-w-xl mx-auto">
-        <p className="caption text-white/50 mb-4">About</p>
-        <h2 className="section-title">Hi, I'm Ully</h2>
-        <p className="mt-6 text-white/70 leading-relaxed">{site.bio}</p>
-        <div className="mt-8 flex justify-center gap-4">
-          <a href={site.socialInstagram} className="btn-dark bg-white !text-black">Instagram</a>
-          <a href={site.socialTiktok} className="btn-dark bg-white !text-black">TikTok</a>
+    <section id="contact" className="section bg-[#111114]">
+      <div className="container-x w-full text-center">
+        <div className="reveal">
+          <p className="eyebrow">04 — Contact</p>
+          <h2 className="title-xl">Found a piece you like?</h2>
+          <p className="body-text mt-6 max-w-xl mx-auto">Every item links directly to where it's sold. For styling advice or sizing help, send me a note on Instagram or WhatsApp.</p>
+          <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+            <a href={wa} className="btn-gold">Start a Conversation</a>
+            <a href={site.socialInstagram} className="btn-line">@ullys.favorite →</a>
+          </div>
+        </div>
+        <div className="mt-20 pt-10 border-t border-white/10 reveal">
+          <p className="font-serif text-2xl tracking-[0.3em] text-[#C39B54]">ULLYS FAVORITE</p>
+          <p className="mt-3 text-xs text-white/40">© {new Date().getFullYear()} · Independently curated. Each item links to its original seller.</p>
         </div>
       </div>
     </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="py-10 border-t border-black/10">
-      <div className="container-x text-center text-sm text-black/50">
-        <p className="font-semibold tracking-[0.15em] text-black">ULLYS FAVORITE</p>
-        <p className="mt-2">© {new Date().getFullYear()} · ULLYS FAVORITE</p>
-        <p className="mt-1 text-xs text-black/40">Dibuat dengan usaha sendiri. Beberapa link afiliasi.</p>
-      </div>
-    </footer>
   );
 }

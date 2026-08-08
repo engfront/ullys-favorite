@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ULLYS FAVORITE — Kurasi Fashion Pilihan",
-  description: "Kurasi fashion bermakna. Belanja cerdas, gaya tetap maksimal.",
+  title: "ULLYS FAVORITE — Curated Fashion",
+  description: "Personally curated fashion pieces. Worn on repeat, vouched for by my own closet.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -13,11 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Open+Sans:wght@300;400;500;600&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen bg-white text-black">{children}</body>
+      <body className="min-h-screen bg-[#0B0B0D] text-[#F8F3E7]">{children}</body>
     </html>
   );
 }
