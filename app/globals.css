@@ -71,10 +71,10 @@
   opacity: 0.55;
   animation: blob-drift 18s ease-in-out infinite alternate;
 }
-.mesh-bg .b1 { width: 460px; height: 460px; top: -120px; left: -80px; background: radial-gradient(circle, #5b31c7 0%, transparent 70%); animation-delay: 0s; }
-.mesh-bg .b2 { width: 520px; height: 520px; top: 8%; right: -140px; background: radial-gradient(circle, #C39B54 0%, transparent 70%); animation-delay: -5s; }
-.mesh-bg .b3 { width: 400px; height: 400px; bottom: -100px; left: 15%; background: radial-gradient(circle, #8b5cf6 0%, transparent 70%); animation-delay: -9s; }
-.mesh-bg .b4 { width: 360px; height: 360px; bottom: 10%; right: 12%; background: radial-gradient(circle, #d05670 0%, transparent 70%); animation-delay: -13s; }
+.mesh-bg .b1 { width: 460px; height: 460px; top: -120px; left: -80px; background: radial-gradient(circle, #E8C9A0 0%, transparent 70%); animation-delay: 0s; }
+.mesh-bg .b2 { width: 520px; height: 520px; top: 8%; right: -140px; background: radial-gradient(circle, #D9A47A 0%, transparent 70%); animation-delay: -5s; }
+.mesh-bg .b3 { width: 400px; height: 400px; bottom: -100px; left: 15%; background: radial-gradient(circle, #D8B4A0 0%, transparent 70%); animation-delay: -9s; }
+.mesh-bg .b4 { width: 360px; height: 360px; bottom: 10%; right: 12%; background: radial-gradient(circle, #C9A880 0%, transparent 70%); animation-delay: -13s; }
 
 @keyframes blob-drift {
   0%   { transform: translate(0, 0) scale(1); }
@@ -82,12 +82,12 @@
   100% { transform: translate(-30px, 30px) scale(0.95); }
 }
 
-/* soft gradient wash behind content */
+/* soft autumn-nude gradient wash behind content */
 .gradient-body {
   background:
-    radial-gradient(1200px 800px at 15% -5%, rgba(91,49,199,0.35), transparent 60%),
-    radial-gradient(1000px 700px at 110% 10%, rgba(195,155,84,0.20), transparent 55%),
-    radial-gradient(900px 900px at 50% 120%, rgba(139,92,246,0.18), transparent 60%),
+    radial-gradient(1200px 800px at 15% -5%, rgba(232,201,160,0.28), transparent 60%),
+    radial-gradient(1000px 700px at 110% 10%, rgba(217,164,122,0.18), transparent 55%),
+    radial-gradient(900px 900px at 50% 120%, rgba(216,180,160,0.16), transparent 60%),
     #0B0B0D;
   min-height: 100vh;
 }
