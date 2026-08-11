@@ -17,7 +17,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen bg-[#0B0B0D] text-[#F8F3E7]">{children}</body>
+      <body className="min-h-screen gradient-body text-[#F8F3E7]">
+        {/* animated soft radial gradient background */}
+        <div className="mesh-bg" aria-hidden="true">
+          <div className="blob b1" />
+          <div className="blob b2" />
+          <div className="blob b3" />
+          <div className="blob b4" />
+        </div>
+        <div className="relative z-10">{children}</div>
+      </body>
     </html>
   );
 }

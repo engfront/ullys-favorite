@@ -19,7 +19,7 @@ export default function Home() {
 /* ── HERO: server-rendered, fotonya pasti muncul ── */
 function Hero() {
   return (
-    <section id="home" className="pt-16 md:pt-24 pb-12 bg-[#0B0B0D] relative overflow-hidden">
+    <section id="home" className="pt-16 md:pt-24 pb-12 relative overflow-hidden">
       <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#C39B54]/10 rounded-full blur-3xl" />
       <div className="container-x relative">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
@@ -70,7 +70,7 @@ function Marquee() {
 /* ── PICKS ── */
 function Picks() {
   return (
-    <section id="picks" className="py-20 bg-[#0B0B0D]">
+    <section id="picks" className="py-20 relative">
       <div className="container-x">
         <div className="mb-10 flex items-end justify-between gap-4">
           <div>
@@ -101,7 +101,7 @@ function Picks() {
 /* ── ABOUT ── */
 function About() {
   return (
-    <section id="about" className="py-20 bg-[#111114]">
+    <section id="about" className="py-20 relative">
       <div className="container-x grid md:grid-cols-2 gap-10 items-center">
         <div className="text-center md:text-left">
           <p className="eyebrow">02 — About</p>
@@ -134,7 +134,7 @@ function About() {
 function Contact() {
   const wa = `https://wa.me/6281317710063?text=${encodeURIComponent("Hi Ully! I saw your ULLYS FAVORITE picks, I want to ask about one of them.")}`;
   return (
-    <section id="contact" className="py-20 bg-[#0B0B0D]">
+    <section id="contact" className="py-20 relative">
       <div className="container-x text-center">
         <p className="eyebrow">03 — Contact</p>
         <h2 className="title-xl">Found a piece you like?</h2>
