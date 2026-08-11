@@ -37,22 +37,10 @@ function Hero() {
               <a href="#picks" className="btn-gold">Explore Picks</a>
               <a href={site.socialInstagram} className="btn-line">@ullys.favorite →</a>
             </div>
-            <div className="mt-8 lg:hidden rounded-xl overflow-hidden">
-              <Image src="/ullys/images/hero.jpg" alt="ULLYS FAVORITE" width={600} height={400} className="w-full object-cover" />
-            </div>
           </div>
 
-          {/* right: v1 hero photo + product card slider */}
+          {/* right: elegant product card slider (hero foto tidak dipakai) */}
           <div>
-            <div className="relative rounded-xl overflow-hidden group mb-4">
-              <Image src="/ullys/images/hero.jpg" alt="ULLYS FAVORITE" width={700} height={460} className="w-full h-[280px] object-cover group-hover:scale-105 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-              <div className="absolute bottom-4 left-5">
-                <p className="font-serif italic text-2xl text-white">Curated by Ully</p>
-                <p className="text-xs tracking-[0.25em] text-[#C39B54] uppercase">Worn on repeat</p>
-              </div>
-            </div>
-            {/* slider is client-interactive */}
             <ProductSlider />
           </div>
         </div>
