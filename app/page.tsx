@@ -37,9 +37,14 @@ function Hero() {
               <a href="#picks" className="btn-gold">Explore Picks</a>
               <a href={site.socialInstagram} className="btn-line">@ullys.favorite →</a>
             </div>
+
+            {/* hero photo */}
+            <div className="mt-10 rounded-xl overflow-hidden reveal-fade">
+              <Image src="/ullys/images/hero.jpg" alt="ULLYS FAVORITE" width={700} height={460} className="w-full h-[280px] md:h-[320px] object-cover" />
+            </div>
           </div>
 
-          {/* right: elegant product card slider (hero foto tidak dipakai) */}
+          {/* right: elegant product card slider */}
           <div>
             <ProductSlider />
           </div>
