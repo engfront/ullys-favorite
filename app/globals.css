@@ -62,9 +62,9 @@
 }
 .animate-fadein { animation: fadein 0.6s ease both; }
 
-/* ── reveal on scroll ── */
-.reveal { opacity: 0; transform: translateY(40px); transition: opacity 1s ease, transform 1s ease; }
-.reveal.in { opacity: 1; transform: translateY(0); }
+/* ── reveal on scroll (progressive enhancement, content visible by default) ── */
+.reveal-fade { opacity: 1; transform: none; transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-fade:not(.in) { opacity: 0; transform: translateY(30px); }
 
 /* ── hero slider ── */
 .slide { opacity: 0; transition: opacity 1.2s ease; }
