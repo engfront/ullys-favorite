@@ -59,10 +59,10 @@ export default function InteractiveRoot({ children }: { children: React.ReactNod
     <>
       {/* loader overlay */}
       {!loaded && (
-        <div className="fixed inset-0 z-[60] bg-[#0B0B0D] flex flex-col items-center justify-center">
-          <p className="font-serif text-4xl tracking-[0.3em] text-[#C39B54]">ULLYS</p>
+        <div className="fixed inset-0 z-[60] bg-[#fff5f8] flex flex-col items-center justify-center">
+          <p className="font-serif text-4xl tracking-[0.3em] text-[#c2657f]">ULLYS</p>
           <div className="mt-6 flex gap-1.5">
-            {[0,1,2].map(i => <span key={i} className="loader-bar w-2 h-2 bg-[#C39B54]" style={{ animationDelay: `${i*0.15}s` }} />)}
+            {[0,1,2].map(i => <span key={i} className="loader-bar w-2 h-2 bg-[#E087A6]" style={{ animationDelay: `${i*0.15}s` }} />)}
           </div>
         </div>
       )}
@@ -95,29 +95,29 @@ export function ProductSlider() {
   const cur = slides[idx];
 
   return (
-    <div className="relative bg-white/5 border border-white/10 rounded-xl overflow-hidden">
+    <div className="relative bg-white/70 border border-[#e8cfda] rounded-xl overflow-hidden">
       <div className="flex aspect-[16/10]">
         <div className="w-1/2 relative overflow-hidden">
           <Image src={cur.image} alt={cur.name} width={400} height={260} className="w-full h-full object-cover animate-fadein" />
         </div>
         <div className="w-1/2 p-5 flex flex-col justify-center animate-fadein">
-          <p className="text-[10px] uppercase tracking-widest text-[#C39B54]">{cur.category}</p>
+          <p className="text-[10px] uppercase tracking-widest text-[#c2657f]">{cur.category}</p>
           <p className="font-serif text-xl md:text-2xl text-cream mt-2">{cur.name}</p>
-          <p className="text-[#C39B54] mt-1">{cur.price}</p>
+          <p className="text-[#c2657f] mt-1">{cur.price}</p>
           <Link href={`/p/${cur.slug}`} className="btn-line mt-4">View →</Link>
         </div>
       </div>
-      <div className="flex items-center justify-between px-5 py-3 border-t border-white/10">
+      <div className="flex items-center justify-between px-5 py-3 border-t border-[#e8cfda]">
         <div className="flex gap-1.5">
           {slides.map((_, i) => (
             <button key={i} onClick={() => setIdx(i)} aria-label={`Slide ${i+1}`}
-              className={`h-1.5 rounded-full transition-all ${i === idx ? "w-6 bg-[#C39B54]" : "w-1.5 bg-white/30"}`} />
+              className={`h-1.5 rounded-full transition-all ${i === idx ? "w-6 bg-[#E087A6]" : "w-1.5 bg-white/30"}`} />
           ))}
         </div>
         <div className="flex gap-2">
           {([["‹", -1], ["›", 1]] as [string, number][]).map(([c, d]) => (
             <button key={c} onClick={() => setIdx((idx + d + slides.length) % slides.length)} aria-label={c}
-              className="w-8 h-8 border border-white/20 text-cream hover:border-[#C39B54] hover:text-[#C39B54] transition"> {c} </button>
+              className="w-8 h-8 border border-[#c9a3b2] text-cream hover:border-[#E087A6] hover:text-[#c2657f] transition"> {c} </button>
           ))}
         </div>
       </div>
