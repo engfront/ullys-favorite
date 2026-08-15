@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { site, products, featuredProducts } from "@/content/products";
+import { site, products, featuredProducts, basePath } from "@/content/products";
 import InteractiveRoot, { ProductSlider } from "./interactive";
 
 export default function Home() {
@@ -40,7 +40,7 @@ function Hero() {
 
             {/* hero photo */}
             <div className="mt-10 rounded-xl overflow-hidden reveal-fade">
-              <Image src="/ullys/images/hero.jpg" alt="ULLYS FAVORITE" width={700} height={460} className="w-full h-[280px] md:h-[320px] object-cover" />
+              <Image src={`${basePath}/images/hero.jpg`} alt="ULLYS FAVORITE" width={700} height={460} className="w-full h-[280px] md:h-[320px] object-cover" />
             </div>
           </div>
 

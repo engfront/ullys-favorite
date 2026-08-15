@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
+const basePath = process.env.ULLYS_BASE_PATH || "/ullys";
 const nextConfig = {
   output: 'export',
-  basePath: '/ullys',
+  basePath,
+  trailingSlash: false,
   images: { unoptimized: true },
 };
 
