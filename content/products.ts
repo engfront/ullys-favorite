@@ -24,7 +24,9 @@ export type Product = {
 };
 
 // Prefix for static assets (matches next.config basePath)
-export const basePath = process.env.NEXT_PUBLIC_ULLYS_BASE_PATH || "/ullys";
+// basePath: env kosong ("") => root (Vercel); unset => "/ullys" (bridge lokal)
+const _bp = process.env.NEXT_PUBLIC_ULLYS_BASE_PATH;
+export const basePath = _bp !== undefined ? (_bp || "") : "/ullys";
 
 export const site = {
   brandName: "ULLYS FAVORITE",
